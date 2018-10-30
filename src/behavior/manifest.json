@@ -1,0 +1,17 @@
+{
+    "format_version": 1,
+    "header": {
+        "description": "Overworld portals",
+        "name": "Rift",
+        "uuid": "bb8c3c3e-6270-4e5c-a4e0-d3ef7ba912de",
+        "version": [0, 0, 1]
+    },
+    "modules": [
+      {
+        "description": "Rift",
+        "type": "client_data",
+        "uuid": "4f6e9583-bfe8-4dda-a1b0-d8795d3737fc",
+        "version": [ 0, 0, 1 ]
+      }
+    ]
+}

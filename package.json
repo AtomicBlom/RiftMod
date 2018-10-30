@@ -1,0 +1,15 @@
+{
+  "name": "riftmod",
+  "private": "true",
+  "scripts": {
+    "build": "gulp build",
+    "watch": "gulp watch",
+    "installmod": "gulp install"
+  },
+  "dependencies": {
+    "gulp-typescript": "^5.0.0-alpha.3",
+    "minecraft-scripting-toolchain": "github:atomicblom/minecraft-scripting-toolchain",
+    "minecraft-scripting-types": "github:atomicblom/minecraft-scripting-types",
+    "typescript": "^3.1.3"
+  }
+}
