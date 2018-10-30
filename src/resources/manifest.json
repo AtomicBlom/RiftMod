@@ -1,0 +1,18 @@
+{
+    "format_version": 1,
+    "header": {
+        "description": "Resources for Rift",
+        "name": "Rift",
+		"uuid": "78fd330c-e56d-495c-85b3-27484bee4ed1",
+        "version": [1, 8, 0],
+        "min_engine_version": [1, 8, 0]
+    },
+    "modules": [
+        {
+            "description": "",
+            "type": "resources",
+			"uuid": "11bfbef3-cc93-498d-a19f-69449b15dcb5",
+            "version": [1, 8, 0]
+        }
+    ]
+}

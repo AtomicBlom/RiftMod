@@ -50,6 +50,7 @@
           "priority": 8
         },
         "minecraft:physics": {
+          "has_gravity": true
         }
       },
   

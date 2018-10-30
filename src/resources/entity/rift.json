@@ -1,0 +1,29 @@
+{
+  "format_version": "1.8.0-beta.1",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "rift:rift",
+      "materials": { "default": "rift" },
+      "textures": {
+        "default": "textures/entity/rift/rift"
+      },
+      "geometry": {
+        "default": "geometry.rift"
+      },
+      "animations": {
+        "default_pose": "animation.rift.default_pose",
+        "look_at_target": "animation.rift.look_at_target"
+      },
+      "animation_controllers": [
+        { "general": "controller.animation.rift.general" }
+      ],
+      "render_controllers": [ "controller.render.rift" ],
+      "locators": {
+      },
+      "spawn_egg": {
+        "base_color": "#121618",
+        "overlay_color": "#342426"
+      }
+    }
+  }
+}

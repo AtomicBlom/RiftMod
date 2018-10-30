@@ -11,4 +11,6 @@ namespace Client {
         system.broadcastEvent(Events.AnnounceClient, playerId);
         system.broadcastEvent(BroadcastableClientEvent.DisplayChat, "player has entered game");
     }
+
+
 }

@@ -1,0 +1,20 @@
+{
+    "format_version":"1.8.0-beta.1",
+    "animations": {
+      "animation.rift.default_pose": {
+        "loop": true,
+        "bones": {
+            
+        }
+      },
+      "animation.rift.look_at_target": {
+        "loop": true,
+        "bones": {
+          "body": {
+            "relative_to": { "rotation": "entity" },
+            "rotation": [ "Math.clamp(Entity.Member.targetXRot, -360, 360)", "Math.clamp(Entity.Member.targetYRot, -360, 360)", 0.0 ]
+          }
+        }
+      }
+    }
+}
