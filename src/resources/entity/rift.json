@@ -18,8 +18,6 @@
         { "general": "controller.animation.rift.general" }
       ],
       "render_controllers": [ "controller.render.rift" ],
-      "locators": {
-      },
       "spawn_egg": {
         "base_color": "#121618",
         "overlay_color": "#342426"
