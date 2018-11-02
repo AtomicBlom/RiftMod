@@ -1,11 +1,6 @@
 {
 	"format_version":"1.8.0-beta.1",
 	"geometry.rift": {
-		"texturewidth": 16,
-		"textureheight": 16,
-		"visible_bounds_width": 1,
-		"visible_bounds_height": 1,
-		"visible_bounds_offset": [0, 0.5, 0],
 		"bones": [
 			{
 				"name": "body",
