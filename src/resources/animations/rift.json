@@ -6,7 +6,7 @@
       "animation.rift.look_at_target": {
         "loop": true,
         "bones": {
-          "body": {
+          "base": {
             "relative_to": { "rotation": "entity" },
             "rotation": [ "Math.clamp(Entity.Member.targetXRot, -20, 20)", "Math.clamp(Entity.Member.targetYRot, 0, 15)", 0.0 ]
           }
