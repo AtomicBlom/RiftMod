@@ -15,6 +15,6 @@ namespace Server {
     }
 
     function entityCreated(eventData: IEntityCreatedEventData) {
-        system.broadcastEvent(BroadcastableServerEvent.DisplayChat, eventData.entity.__identifier__);        
+        //system.broadcastEvent(BroadcastableServerEvent.DisplayChat, eventData.entity.__identifier__);        
     }
 }
