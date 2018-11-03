@@ -12,7 +12,8 @@
       },
       "animations": {
         "default_pose": "animation.rift.default_pose",
-        "look_at_target": "animation.rift.look_at_target"
+        "look_at_target": "animation.rift.look_at_target",
+        "idle": "animation.rift.idle"
       },
       "animation_controllers": [
         { "general": "controller.animation.rift.general" }

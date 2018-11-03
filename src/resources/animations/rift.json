@@ -6,10 +6,42 @@
       "animation.rift.look_at_target": {
         "loop": true,
         "bones": {
-          "base": {
-            "relative_to": { "rotation": "entity" },
-            "rotation": [ "Math.clamp(Entity.Member.targetXRot, -20, 20)", "Math.clamp(Entity.Member.targetYRot, 0, 15)", 0.0 ]
+          "main_pillar": {
+            "relative_to": { "rotation": "entity" }
           }
+        }
+      },
+      "animation.rift.idle": {
+        "loop": true,
+        "bones": {
+          "main_pillar": {
+            "position": [ "-this", "Math.cos(Params.LifeTime * 100) - this", "-this" ]
+          },
+          "upper_group": {
+            "rotation": [ 0.0, "Params.LifeTime * 10", 0.0 ]
+          },
+          "middle_group": {
+            "rotation": [ 0.0, "-Params.LifeTime * 8", 0.0 ]
+          },
+          "lower_group": {
+            "rotation": [ 0.0, "Params.LifeTime * 12", 0.0 ]
+          },
+          "side_pillar_a": {
+            "position": [ "-this", "Math.cos(Params.LifeTime * 125 + 34.2343) - this", "-this" ]
+          },
+          "side_pillar_b": {
+            "position": [ "-this", "Math.cos(Params.LifeTime * 78 + 11.3424) - this", "-this" ]
+          },
+          "side_pillar_c": {
+            "position": [ "-this", "Math.cos(Params.LifeTime * 145 + 234.2394) - this", "-this" ]
+          },
+          "side_pillar_d": {
+            "position": [ "-this", "Math.cos(Params.LifeTime * 79 + 142.8431) - this", "-this" ]
+          },
+          "side_pillar_e": {
+            "position": [ "-this", "Math.cos(Params.LifeTime * 123 + 74.4328) - this", "-this" ]
+          }
+
         }
       }
     }

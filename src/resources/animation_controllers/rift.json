@@ -6,7 +6,8 @@
           "default": {
             "animations": {
               "default_pose": [],
-              "look_at_target": []
+              "look_at_target": [],
+              "idle": []
             }
           }
         }
