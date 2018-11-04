@@ -2,7 +2,7 @@
   "materials": {
     "version": "1.0.0",
 
-    "rift:entity_alphablend": {
-    }
+    "rift:entity_alphablend": {},
+    "rift_sidepillar:entity_emissive": { }
   }
 }

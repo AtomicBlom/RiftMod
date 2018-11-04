@@ -3,7 +3,10 @@
   "minecraft:client_entity": {
     "description": {
       "identifier": "rift:rift",
-      "materials": { "default": "rift" },
+      "materials": { 
+        "default": "rift",
+        "sidepillar": "rift_sidepillar"
+      },
       "textures": {
         "default": "textures/entity/rift/rift"
       },
