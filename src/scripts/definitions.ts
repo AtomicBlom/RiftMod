@@ -3,7 +3,8 @@ export const enum Events {
 }
 
 export const enum Components {
-    RiftState = "rift:state"
+    RiftState = "rift:state",
+    RecentTeleport = "rift:recent_teleport"
 }
 
 export const enum Entity {
@@ -15,6 +16,10 @@ export interface RiftStateComponent {
     partnerLocation?: Vector;
     state: RiftState;
     role: RiftRole;
+}
+
+export interface RecentTeleport {
+    riftLocation: Vector
 }
 
 export const enum RiftRole {

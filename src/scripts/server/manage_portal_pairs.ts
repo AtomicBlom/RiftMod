@@ -1,6 +1,13 @@
 //FIXME: Explode pairs when one of the others dies.
 //FIXME: Randomize locations
 //FIXME: Teleport players
+//DONE?: Teleport Items
+//FIXME: Portals should only spawn in overworld
+//FIXME: Players cannot spawn in rifts in other dimensions manually.
+//FIXME: Items must be at least X ticks old to spawn.
+//FIXME: Portals should not move after they have settled
+//FIXME: Portals should be invisible until they have settled
+
 
 import { 
     Events, 
@@ -102,7 +109,7 @@ namespace ManagePortalPairs {
     }
 
     function displayRiftState(rift: IEntityObject, riftStateComponent: RiftStateComponent) {
-        system.broadcastEvent(BroadcastableServerEvent.DisplayChat, `Node has updated: ${rift.id}:  ${riftStateComponent.role}, ${riftStateComponent.state}, ${JSON.stringify(riftStateComponent.lastLocation)}, ${JSON.stringify(riftStateComponent.partnerLocation)}`);
+        system.broadcastEvent(BroadcastableServerEvent.DisplayChat, `Rift has updated: ${rift.id}:  ${riftStateComponent.role}, ${riftStateComponent.state}, ${JSON.stringify(riftStateComponent.lastLocation)}, ${JSON.stringify(riftStateComponent.partnerLocation)}`);
     }
 
     function onRiftSettled(rift: IEntityObject, riftStateComponent: RiftStateComponent) {
@@ -124,9 +131,9 @@ namespace ManagePortalPairs {
                 Math.floor(riftPosition.z)
             ]
 
-            secondaryRiftPosition.x = riftPosition.x + 6;
+            secondaryRiftPosition.x = riftPosition.x + 20;
             secondaryRiftPosition.y = 256
-            secondaryRiftPosition.z = riftPosition.z + 6;
+            secondaryRiftPosition.z = riftPosition.z + 20;
             system.applyComponentChanges(secondaryRiftPosition);
             applyRiftComponentSettings(secondaryRift, secondaryRiftState);
         } else {
@@ -162,8 +169,7 @@ namespace ManagePortalPairs {
     }
 
     function entityCreated(eventData: IEntityCreatedEventData) {
-        try {
-            if (eventData.entity.__identifier__ !== "rift:rift") return;
+        if (eventData.entity.__identifier__ !== "rift:rift") return;
             const rift = eventData.entity;
 
             //Create Pair
@@ -191,10 +197,6 @@ namespace ManagePortalPairs {
             applyRiftComponentSettings(rift, riftStateComponent);
 
             displayRiftState(rift, riftStateComponent);
-
-        } catch (e) {
-            system.broadcastEvent(BroadcastableServerEvent.DisplayChat, "Could initialize entity...");
-        }
     }
 }
 
