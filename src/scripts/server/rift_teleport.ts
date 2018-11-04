@@ -1,4 +1,4 @@
-import { Components, RiftStateComponent, RiftState, RiftRole, Entity, RecentTeleport } from "../definitions";
+import { Components, RiftStateComponent, RiftState, RiftRole, Entity, RecentTeleport, Events } from "../definitions";
 
 const searchSize = 5;
 const teleportDistance = 3 * 3; // 3 blocks to teleport;
@@ -92,6 +92,11 @@ namespace TeleportPlayer {
             
             system.applyComponentChanges(entityPosition);
             system.applyComponentChanges(recentTeleport);
+
+            if (entity.__identifier__ === "minecraft:player") {
+                
+                system.broadcastEvent(Events.TeleportClient, entityPosition);
+            }
 
             system.broadcastEvent(BroadcastableServerEvent.DisplayChat, `Teleported ${entity.__identifier__} to ${entityPosition.x},${entityPosition.y},${entityPosition.z}`);
         }

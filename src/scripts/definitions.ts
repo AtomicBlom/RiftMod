@@ -1,5 +1,6 @@
 export const enum Events {
-    AnnounceClient = "rift:announce_client"
+    AnnounceClient = "rift:announce_client",
+    TeleportClient = "rift:teleport_client"
 }
 
 export const enum Components {
