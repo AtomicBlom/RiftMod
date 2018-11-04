@@ -15,6 +15,19 @@ namespace Server {
     }
 
     function entityCreated(eventData: IEntityCreatedEventData) {
-        //system.broadcastEvent(BroadcastableServerEvent.DisplayChat, eventData.entity.__identifier__);        
+        if (eventData.entity.__identifier__ !== "rift:rift") return;
+
+        //Create Pair
+        const nameable = system.getComponent(eventData.entity, MinecraftComponent.Nameable);
+        nameable.allowNameTagRenaming = false;
+        try {
+            if (!nameable.name) {
+                //Either this is a 
+            }
+            JSON.parse(nameable.name);
+        } catch (e) {
+            system.broadcastEvent(BroadcastableServerEvent.DisplayChat, "Could not parse name...");
+        }
+
     }
 }

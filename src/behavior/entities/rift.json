@@ -15,7 +15,7 @@
     },  
     "components": {
       "minecraft:type_family": {
-        "family": [ "rift" ]
+        "family": [ "rift", "inanimate" ]
       },
       "minecraft:collision_box": {
           "width": 2,
@@ -23,16 +23,13 @@
       },
       "minecraft:nameable": {
       },
-      "minecraft:movement": {
+      "minecraft:fall_damage": {
         "value": 0.0
       },
-      "minecraft:behavior.look_at_player": {
-        "priority": 7,
-        "look_distance": 6.0,
-        "probability": 0.02
+      "minecraft:physics": {
       },
-      "minecraft:behavior.random_look_around": {
-        "priority": 8
+      "minecraft:push_through": {
+        "value": 1.0
       }
     }
   }
