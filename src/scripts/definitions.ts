@@ -1,3 +1,5 @@
+/// <reference types="minecraft-scripting-types-shared" />
+
 export const enum Events {
     AnnounceClient = "rift:announce_client",
     TeleportClient = "rift:teleport_client"
@@ -12,14 +14,14 @@ export const enum Entity {
     Rift = "rift:rift"
 }
 
-export interface RiftStateComponent {
+export interface RiftStateComponent extends IComponent {
     lastLocation?: Vector;
     partnerLocation?: Vector;
     state: RiftState;
     role: RiftRole;
 }
 
-export interface RecentTeleport {
+export interface RecentTeleport extends IComponent {
     riftLocation: Vector
 }
 

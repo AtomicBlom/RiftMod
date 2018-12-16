@@ -6,9 +6,7 @@ builder.scriptTasks = [
     () => ts({
         module: "ES6",
         noImplicitAny: true,
-        types: [
-            "minecraft-scripting-types"
-        ]
+        target: "ES6"
     })
 ];
 module.exports = builder.configureEverythingForMe();

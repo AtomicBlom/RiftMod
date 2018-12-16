@@ -1,3 +1,5 @@
+/// <reference types="minecraft-scripting-types-server" />
+
 //FIXME: Explode pairs when one of the others dies.
 //FIXME: Randomize locations
 //FIXME: Teleport players
@@ -26,11 +28,11 @@ namespace ManagePortalPairs {
     let lastEntityCheckTick = 0;
     let checkEntitiesThisTick: boolean = false;
 
-    let spatialView: ISpatialView;
+    let spatialView: IQuery;
 
     system.initialize = function() {
 
-        const exampleRiftStateComponent: RiftStateComponent = {
+        const exampleRiftStateComponent: Partial<RiftStateComponent> = {
             partnerLocation: [0, 0, 0],
             lastLocation: [0, 0, 0],
             state: RiftState.Settling,
@@ -39,10 +41,10 @@ namespace ManagePortalPairs {
         this.registerComponent(Components.RiftState, exampleRiftStateComponent);
 
         this.listenForEvent(Events.AnnounceClient, announceClient);
-        this.listenForEvent(MinecraftServerEvent.EntityCreated, entityCreated);
-        this.listenForEvent(MinecraftServerEvent.EntityTick, entityTick);
+        this.listenForEvent(ReceiveFromMinecraftServer.EntityCreated, entityCreated);
+        this.listenForEvent(ReceiveFromMinecraftServer.EntityTick, entityTick);
 
-        spatialView = this.registerSpatialView(MinecraftComponent.Position, "x", "y", "z");
+        spatialView = this.registerQuery(MinecraftComponent.Position, "x", "y", "z");
     }
 
     
@@ -93,7 +95,7 @@ namespace ManagePortalPairs {
         const nameable = system.getComponent(rift, MinecraftComponent.Nameable);
         nameable.allowNameTagRenaming = false;
 
-        const stateCopy: RiftStateComponent = {
+        const stateCopy: Partial<RiftStateComponent> = {
             role: riftStateComponent.role,
             state: riftStateComponent.state
         };
@@ -102,14 +104,14 @@ namespace ManagePortalPairs {
         }
 
         nameable.name = JSON.stringify(stateCopy);
-        system.applyComponentChanges(riftStateComponent);
-        system.applyComponentChanges(nameable);
+        system.applyComponentChanges(rift, riftStateComponent);
+        system.applyComponentChanges(rift, nameable);
 
         displayRiftState(rift, riftStateComponent);
     }
 
     function displayRiftState(rift: IEntityObject, riftStateComponent: RiftStateComponent) {
-        system.broadcastEvent(BroadcastableServerEvent.DisplayChat, `Rift has updated: ${rift.id}:  ${riftStateComponent.role}, ${riftStateComponent.state}, ${JSON.stringify(riftStateComponent.lastLocation)}, ${JSON.stringify(riftStateComponent.partnerLocation)}`);
+        system.broadcastEvent(SendToMinecraftServer.DisplayChat, `Rift has updated: ${rift.id}:  ${riftStateComponent.role}, ${riftStateComponent.state}, ${JSON.stringify(riftStateComponent.lastLocation)}, ${JSON.stringify(riftStateComponent.partnerLocation)}`);
     }
 
     function onRiftSettled(rift: IEntityObject, riftStateComponent: RiftStateComponent) {
@@ -119,7 +121,7 @@ namespace ManagePortalPairs {
             riftStateComponent.state = RiftState.WaitingForPartnerToSettle;
             //Never gonna give you up.           
 
-            const secondaryRift = system.createEntity("entity", Entity.Rift);
+            const secondaryRift = system.createEntity(EntityType.Entity, Entity.Rift);
             const secondaryRiftPosition = system.getComponent(secondaryRift, MinecraftComponent.Position);
             const secondaryRiftState = system.createComponent<RiftStateComponent>(secondaryRift, Components.RiftState);
             
@@ -134,12 +136,12 @@ namespace ManagePortalPairs {
             secondaryRiftPosition.x = riftPosition.x + 20;
             secondaryRiftPosition.y = 256
             secondaryRiftPosition.z = riftPosition.z + 20;
-            system.applyComponentChanges(secondaryRiftPosition);
+            system.applyComponentChanges(secondaryRift, secondaryRiftPosition);
             applyRiftComponentSettings(secondaryRift, secondaryRiftState);
         } else {
             //Never gonna let you go.
-            system.broadcastEvent(BroadcastableServerEvent.DisplayChat, "Secondary node has settled");
-            const entities = system.getEntitiesFromSpatialView(spatialView, 
+            system.broadcastEvent(SendToMinecraftServer.DisplayChat, "Secondary node has settled");
+            const entities = system.getEntitiesFromQuery(spatialView, 
                 riftStateComponent.partnerLocation[0] - 1,
                 riftStateComponent.partnerLocation[1] - 1,
                 riftStateComponent.partnerLocation[2] - 1,
@@ -149,7 +151,7 @@ namespace ManagePortalPairs {
             );
 
             for (const entity of entities) {
-                system.broadcastEvent(BroadcastableServerEvent.DisplayChat, `found entity: ${JSON.stringify(entity)}`);
+                system.broadcastEvent(SendToMinecraftServer.DisplayChat, `found entity: ${JSON.stringify(entity)}`);
 
                 if (entity.__identifier__ === Entity.Rift) {
                     const primaryRift = entity;
@@ -187,7 +189,7 @@ namespace ManagePortalPairs {
             }
 
             if (!!nameable.name) {
-                const  serializedData = <RiftStateComponent>JSON.parse(nameable.name);
+                const serializedData = <RiftStateComponent>JSON.parse(nameable.name);
                 riftStateComponent.role = serializedData.role;
                 riftStateComponent.state = serializedData.state;
                 riftStateComponent.partnerLocation = serializedData.partnerLocation;

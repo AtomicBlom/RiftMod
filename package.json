@@ -8,8 +8,9 @@
   },
   "dependencies": {
     "gulp-typescript": "^5.0.0-alpha.3",
-    "minecraft-scripting-toolchain": "github:minecraft-addon-tools/minecraft-scripting-toolchain",
-    "minecraft-scripting-types": "github:minecraft-addon-tools/minecraft-scripting-types",
+    "minecraft-scripting-toolchain": "^0.1.0",
+    "minecraft-scripting-types-client": "^0.2.0",
+    "minecraft-scripting-types-server": "^0.2.0",
     "typescript": "^3.1.3"
   }
 }
